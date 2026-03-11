@@ -258,40 +258,37 @@ int main(void)
             hausX += speed;
         if (IstTasteGedrückt(Key_A))
             hausX -= speed;
+        if (IstTasteGedrückt(Key_W))
+            hausY += speed;
+        if (IstTasteGedrückt(Key_S))
+            hausY -= speed;
 
         // ===== Haus an NEUER Position mit hausX erstellen =====
+        // ===== Haus an NEUER Position mit hausX und hausY erstellen =====
         erstelleQuadrat(//haus
-            hausX, -0.8f,              // ← hausX verwenden!
+            hausX, hausY,
             1.0f, 1.0f,
             1.0f, 0.0f, 1.0f
         );
 
-        erstelleDreieck(//Dach links
-            hausX - 0.2f, 0.2f, 0.0f,  // ← hausX - 0.2
-            hausX + 0.5f, 0.2f, 0.0f,  // ← hausX + 0.5
-            hausX + 0.5f, 0.9f, 0.0f,  // ← hausX + 0.5
-            0.0f, 0.0f, 1.0f
-        );
-
-        erstelleDreieck(//dach rechts
-            hausX + 1.2f, 0.2f, 0.0f,  // ← hausX + 1.2
-            hausX + 0.5f, 0.2f, 0.0f,  // ← hausX + 0.5
-            hausX + 0.5f, 0.9f, 0.0f,  // ← hausX + 0.5
-            0.0f, 0.0f, 1.0f
+        erstelleDreieck(//Dach links (das rote Dach)
+            hausX - 0.2f, hausY + 1.0f, 0.0f,           // linke untere Ecke
+            hausX + 1.2f, hausY + 1.0f, 0.0f,           // rechte untere Ecke  
+            hausX + 0.5f, hausY + 1.5f, 0.0f,           // Spitze
+            1.0f, 0.0f, 0.0f                            // ROTE Farbe
         );
 
         erstelleQuadrat(//Tür
-            hausX + 0.1f, -0.8f,        // ← hausX + 0.1
-            0.6f, 0.4f,
+            hausX + 0.1f, hausY + 0.1f,                  // hausY + 0.1 statt festem -0.8f
+            0.4f, 0.3f,
             1.0f, 1.0f, 1.0f
         );
 
         erstelleQuadrat(//Fenster
-            hausX + 0.55f, -0.6f,       // ← hausX + 0.55
-            0.4f, 0.4f,
-            0.0f, 0.0f, 0.5f
+            hausX + 0.6f, hausY + 0.5f,                   // hausY + 0.5 statt festem -0.6f
+            0.3f, 0.3f,
+            0.0f, 0.0f, 1.0f
         );
-
         // ===== WICHTIG: Neue Vertices aus aktuellen Dreiecken =====
         vertexDaten = dreieckeZuVertices();
 
