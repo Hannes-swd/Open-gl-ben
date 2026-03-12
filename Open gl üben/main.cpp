@@ -12,9 +12,19 @@ struct dreiecke {
     float r, g, b;
 };
 
-
+struct Vector2 {
+    float posx;
+    float posy;
+};
 
 std::vector<dreiecke> Dreiecke;
+
+Vector2 GetMousePosition() {
+    double mouseX, mouseY;
+    glfwGetCursorPos(window, &mouseX, &mouseY);
+    Vector2 mausposition = { mouseX ,mouseY };
+    return mausposition;
+}
 
 void erstelleDreieck(float x1, float y1, float z1,
     float x2, float y2, float z2,
@@ -247,6 +257,11 @@ int main(void)
 
     while (!glfwWindowShouldClose(window))
     {
+
+        //mausposition
+        Vector2 mausposition = GetMousePosition();
+
+
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -263,8 +278,6 @@ int main(void)
         if (IstTasteGedrückt(Key_S))
             hausY -= speed;
 
-        // ===== Haus an NEUER Position mit hausX erstellen =====
-        // ===== Haus an NEUER Position mit hausX und hausY erstellen =====
         erstelleQuadrat(//haus
             hausX, hausY,
             1.0f, 1.0f,
