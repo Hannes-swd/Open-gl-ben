@@ -19,12 +19,7 @@ struct Vector2 {
 
 std::vector<dreiecke> Dreiecke;
 
-Vector2 GetMousePosition() {
-    double mouseX, mouseY;
-    glfwGetCursorPos(window, &mouseX, &mouseY);
-    Vector2 mausposition = { mouseX ,mouseY };
-    return mausposition;
-}
+
 
 void erstelleDreieck(float x1, float y1, float z1,
     float x2, float y2, float z2,
@@ -148,6 +143,12 @@ bool IstTasteGedrückt(Tasten taste) {
     }
 }
 
+Vector2 GetMousePosition() {
+    double mouseX, mouseY;
+    glfwGetCursorPos(window, &mouseX, &mouseY);
+    Vector2 mausposition = { mouseX ,mouseY };
+    return mausposition;
+}
 // ===== MAIN FUNKTION =====
 
 int main(void)
@@ -260,6 +261,10 @@ int main(void)
 
         //mausposition
         Vector2 mausposition = GetMousePosition();
+
+        std::cout << mausposition.posx;
+        std::cout << mausposition.posy << "\n";
+
 
 
         /* Render here */
